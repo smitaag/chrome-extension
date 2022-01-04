@@ -1,6 +1,6 @@
 console.log('background script ran');
 let dev = true;
-let domain = dev ? "http://localhost:8000/" : 'https://myamazonhistory.com/';
+let domain = dev ? "http://localhost:8001/" : 'https://myamazonhistory.com/';
 
 chrome.runtime.onMessage.addListener(
     function(message, sender, sendResponse) {
