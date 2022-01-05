@@ -12,7 +12,7 @@ require('dotenv').config();
 const app = express();
 
 mongoose
-	.connect(process.env.DEV_DB, {useNewUrlParser: true, useCreateIndex: true, UseFindAndModify: false})
+	.connect(process.env.DEV_DB, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true})
 	.then(()=> console.log('DB Connected'))
 	.catch(err=>{
 		console.log(err);
@@ -33,7 +33,7 @@ app.post('/save-products', (req, res)=>{
 	res.send('all good in the hood');
 })
 
-const port = process.env.PORT || 8050;
+const port = process.env.PORT || 8000;
 
 app.listen(port, ()=>{
 	console.log(`Server is running on port ${port}`)

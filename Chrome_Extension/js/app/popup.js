@@ -17,10 +17,10 @@ myAmazonHistory.config(function($stateProvider, $urlRouterProvider){
 			url: '/signup',
 			templateUrl: '../views/signup.html'
 		})
-// 		.state('welcome', {
-// 			url: '/welcome',
-// 			templateUrl: '../views/welcome.html'
-// 		})
+		.state('welcome', {
+			url: '/welcome',
+			templateUrl: '../views/welcome.html'
+		})
 // 		.state('search-options', {
 // 			url: '/search-options',
 // 			templateUrl: '../views/search-options.html'
@@ -51,16 +51,16 @@ myAmazonHistory.controller("PopupCtrl", ['$scope', '$state', function($scope, $s
 
 	$scope.login = function(formData){
 		console.log('formData from Login: ', formData);
-		// chrome.runtime.sendMessage({type: "login", data: formData},
-		// 	function(response){
-		// 		console.log('response from the background is: ', response);
-		// 		if(response.user){
-		// 			$scope.name = response.user.username; 
-		// 			$state.go('welcome');	
-		// 		}
+		chrome.runtime.sendMessage({type: "login", data: formData},
+			function(response){
+				console.log('response from the background is: ', response);
+				if(response.user){
+					$scope.name = response.user.username; 
+					$state.go('welcome');	
+				}
 				
-		// 	} 
-		// )
+			} 
+		)
 	}
 
 	$scope.signup = function(formData){
@@ -78,8 +78,8 @@ myAmazonHistory.controller("PopupCtrl", ['$scope', '$state', function($scope, $s
 }]);
 
 
-// myAmazonHistory.controller("ScraperCtrl", ['$scope', '$state', function($scope, $state){
-// 	console.log('ScraperCtrl Initialized');
+myAmazonHistory.controller("ScraperCtrl", ['$scope', '$state', function($scope, $state){
+	console.log('ScraperCtrl Initialized');
 
 // 	 //scrape purchase history result
 //     $scope.fetchMyHistory = function(user){
@@ -137,4 +137,4 @@ myAmazonHistory.controller("PopupCtrl", ['$scope', '$state', function($scope, $s
 //         );   
 //     }
 
-// }]);
+}]);

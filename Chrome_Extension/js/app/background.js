@@ -1,6 +1,6 @@
 console.log('background script ran');
-let dev = true;
-let domain = dev ? "http://localhost:8001/" : 'https://myamazonhistory.com/';
+let dev = true; //we are in development mode
+let domain = dev ? "http://localhost:8000/" : 'https://myamazonhistory.com/';
 
 chrome.runtime.onMessage.addListener(
     function(message, sender, sendResponse) {
@@ -15,9 +15,9 @@ chrome.runtime.onMessage.addListener(
                 let userLoginCreds = message.data;
                 userLoginCreds.username = message.data.email.split('@')[0];
                 ajaxCall("POST", "user/login", userLoginCreds, '', function(response){
-                   console.log('response from server is: ',response);
+                   console.log('response from server now is : ',response);
                    setStorageItem('user',response);
-                   sendResponse(response);
+                  sendResponse(response);
                 })
                 return true;
                 break;
@@ -26,7 +26,7 @@ chrome.runtime.onMessage.addListener(
               let userCreds = message.data;
               userCreds.username = message.data.email.split('@')[0];
               ajaxCall("POST", "user/signup", userCreds, '', function(response){
-                  console.log('response from server is: ',response);
+                  console.log('response from server now is: ',response);
                   sendResponse(response);
               })
             	return true;
@@ -162,7 +162,7 @@ chrome.runtime.onMessage.addListener(
 });
 
 
-function ajaxCall(type, path, data, token, callback){
+function ajaxCall(type,path, data,token, callback){
   $.ajax({
     url: domain+path,
     type: type,
